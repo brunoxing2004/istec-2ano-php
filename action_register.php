@@ -24,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Registration successful
         echo 'User registered successfully';
         // You might want to redirect or display a success message
+        sleep(2);
+        header("Location: index.php");
     } else {
         // Registration failed
         echo 'Error registering user';
