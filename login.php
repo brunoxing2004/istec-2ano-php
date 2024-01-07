@@ -36,6 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Redirecione para a página de registro em caso de acesso direto
-header("Location: register.php");
+//header("Location: register.php");
 exit();
 ?>
