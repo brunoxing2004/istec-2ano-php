@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = "127.0.0.1";
 $username = "helpdesk_istec";
 $password = "helpdesk_istec";
 $dbname = "helpdesk_istec";
