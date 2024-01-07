@@ -1,72 +1,55 @@
-<?php function output_header() { ?>
-
-    <head>
+<?php
+function output_header() {
+    session_start();
+    echo '<!DOCTYPE html>
+    <html lang="en-US">
+      <head>
         <title>Super Legit News</title>    
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="./style/style.css" rel="stylesheet">
-        <link href="./style/layout.css" rel="stylesheet">
-        <link href="./style/responsive.css" rel="stylesheet">
-        <link href="./style/comments.css" rel="stylesheet">
-        <link href="./style/forms.css" rel="stylesheet">
-    </head>
-
-    <body>
+        <link href="./css/style.css" rel="stylesheet">
+        <link href="./css/layout.css" rel="stylesheet">
+        <link href="./css/responsive.css" rel="stylesheet">
+        <link href="./css/comments.css" rel="stylesheet">
+        <link href="./css/forms.css" rel="stylesheet">
+      </head>
+      <body>
         <header>
-        <h1><a href="index.php">Super Legit News</a></h1>
-        <h2><a href="index.php">Where fake news are born!</a></h2>
-        <div id="signup">
-            <a href="register.php">Register</a>
-            <a href="login.php">Login</a>
-        </div>
+          <h1><a href="index.php">Super Legit News</a></h1>
+          <h2><a href="index.php">Where fake news are born!</a></h2>
+          <div id="signup">';
+
+    // Verificar se o usuário está autenticado
+    if (isset($_SESSION['username'])) {
+        echo '<a href="logout.php">Logout</a>';
+    } else {
+        echo '<a href="register.php">Register</a>
+              <a href="login.php">Login</a>';
+    }
+
+    echo '</div>
         </header>
 
+        <input type="checkbox" id="hamburger"> 
+        <label class="hamburger" for="hamburger"></label>
         <nav id="menu">
-            <input type="checkbox" id="hamburger"> 
-            <label class="hamburger" for="hamburger"></label>
-            <ul>
-                <li><a href="index.php">Local</a></li>
-                <li><a href="index.php">World</a></li>
-                <li><a href="index.php">Politics</a></li>
-                <li><a href="index.php">Sports</a></li>
-                <li><a href="index.php">Science</a></li>
-                <li><a href="index.php">Weather</a></li>
-            </ul>
-        </nav>
+          <ul>
+            <li><a href="index.php">Local</a></li>
+            <li><a href="index.php">World</a></li>
+            <li><a href="index.php">Politics</a></li>
+            <li><a href="index.php">Sports</a></li>
+            <li><a href="index.php">Science</a></li>
+            <li><a href="index.php">Weather</a></li>
+          </ul>
+        </nav>';
+}
 
-        <aside id="related">
-            <article>
-                <h1><a href="#">Duis arcu purus</a></h1>
-                <p>Etiam mattis convallis orci eu malesuada. Donec odio ex, facilisis ac blandit vel, placerat ut lorem. Ut id sodales purus. Sed ut ex sit amet nisi ultricies malesuada. Phasellus magna diam, molestie nec quam a, suscipit finibus dui. Phasellus a.</p>
-            </article>        
-            
-            <article>
-                <h1><a href="#">Sed efficitur interdum</a></h1>
-                <p>Integer massa enim, porttitor vitae iaculis id, consequat a tellus. Aliquam sed nibh fringilla, pulvinar neque eu, varius erat. Nam id ornare nunc. Pellentesque varius ipsum vitae lacus ultricies, a dapibus turpis tristique. Sed vehicula tincidunt justo, vitae varius arcu.</p>
-            </article>
-            
-            <article>
-                <h1><a href="#">Vestibulum congue blandit</a></h1>
-                <p>Proin lectus felis, fringilla nec magna ut, vestibulum volutpat elit. Suspendisse in quam sed tellus fringilla luctus quis non sem. Aenean varius molestie justo, nec tincidunt massa congue vel. Sed tincidunt interdum laoreet. Vivamus vel odio bibendum, tempus metus vel.</p>
-            </article>
-        </aside>
-    </body>
-<?php } ?>
-
-<?php function output_footer() { ?>
-    <body>
-        <footer>
-            <p>&copy; Fake News, 2022</p>
-        </footer>
-    </body>
-<?php } ?>
-
-<?php
-    function editArticle() {
-        $stmt = getDatabaseConnection()->prepare('SELECT * FROM news JOIN users USING (username) WHERE id = :id');
-        $stmt->bindParam(':id', $_GET['id']);
-        $stmt->execute();
-        $article = $stmt->fetch();
-        return $article;
+function output_footer($tags) {
+    echo '<div class="footer">';
+    // Supondo que $tags seja um array com as tags do artigo
+    foreach ($tags as $tag) {
+        echo '<span class="tag">' . $tag . '</span>';
     }
+    echo '</div>';
+}
 ?>
