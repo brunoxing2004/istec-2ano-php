@@ -7,16 +7,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the submitted username and password
     $submittedUsername = $_POST['username'];
     $submittedPassword = $_POST['password'];
+    $submittedName = $_POST['name'];
 
     // Hash the password using BCRYPT
     $hashedPassword = password_hash($submittedPassword, PASSWORD_BCRYPT);
 
     // Insert the new user into the database
     $db = getDatabaseConnection(); // Use the function from connection.php
-    $query = "INSERT INTO users (username, password) VALUES (:username, :password)";
+    $query = "INSERT INTO users (username, password, name) VALUES (:username, :password, :name)";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':username', $submittedUsername);
     $stmt->bindParam(':password', $hashedPassword);
+    $stmt->bindParam(':name', $submittedName);
 
     if ($stmt->execute()) {
         // Registration successful

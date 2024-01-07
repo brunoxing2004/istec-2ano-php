@@ -27,6 +27,9 @@
         <label>
           Password <input type="password" name="password">
         </label>
+        <label>
+          Complete Name <input type="text" name="name">
+        </label>
         <input formaction="" type="submit" value="Register">
       </form>
     </section>
