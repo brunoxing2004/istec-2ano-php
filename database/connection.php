@@ -1,6 +1,6 @@
 <?php
     function getDatabaseConnection() {
-        $db = new PDO('sqlite:/mnt/c/Users/nvamo/Desktop/EXERCISE IV/SQLite database/database/news.db');
+        $db = new PDO('sqlite:./news.db');
         return $db;
     }
 ?>

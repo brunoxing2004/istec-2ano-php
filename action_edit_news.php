@@ -1,6 +1,6 @@
 <?php
-require_once '/mnt/c/Users/nvamo/Desktop/EXERCISE IV/SQLite database/database/connection.php';
-require_once '/mnt/c/Users/nvamo/Desktop/EXERCISE IV/SQLite database/news.php';
+require_once './database/connection.php';
+require_once './news.php';
 
 // action_edit_article.php
 session_start(); // Start the session

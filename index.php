@@ -1,7 +1,7 @@
 <?php
-    require_once '/mnt/c/Users/nvamo/Desktop/EXERCISE IV/SQLite database/database/connection.php';
-    require_once '/mnt/c/Users/nvamo/Desktop/EXERCISE IV/SQLite database/templates/common.php';
-    require_once '/mnt/c/Users/nvamo/Desktop/EXERCISE IV/SQLite database/news.php';
+    require_once './database/connection.php';
+    require_once './templates/common.php';
+    require_once './news.php';
 
     $db = getDatabaseConnection();
     session_start();

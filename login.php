@@ -1,5 +1,5 @@
 <?php
-  require_once '/mnt/c/Users/nvamo/Desktop/EXERCISE IV/SQLite database/templates/common.php';
+  require_once './templates/common.php';
   session_start();
   output_header();
 ?>

@@ -1,5 +1,5 @@
 <?php
-    require_once '/mnt/c/Users/nvamo/Desktop/EXERCISE IV/SQLite database/database/connection.php';
+    require_once './database/connection.php';
 
     session_start();
 
