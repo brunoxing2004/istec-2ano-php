@@ -16,7 +16,6 @@ function output_article($article) {
             <header>
               <h1><a href="article.php?id=' . $article['id'] . '">' . $article['title'] . '</a></h1>
             </header>
-            <img src="' . $article['image_url'] . '" alt="' . $article['title'] . '">
             <p>' . $article['introduction'] . '</p>
             <footer>
               <span class="author">' . $article['author'] . '</span>
