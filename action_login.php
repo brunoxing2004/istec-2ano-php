@@ -1,30 +1,46 @@
 <?php
 // action_login.php
-session_start(); // Start the session
+session_start();
+require_once('./templates/common.php');
+require_once('./templates/register.php');
+require_once('./database/connection.php');
 
-// Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the submitted username and password
-    $submittedUsername = $_POST['username'];
-    $submittedPassword = $_POST['password'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $name = $_POST['name'];
 
-    // Validate the username and password (replace with your authentication logic)
-    if ($submittedUsername === 'username' && $submittedPassword === 'password') {
-        // Authentication successful
-        $_SESSION['username'] = $submittedUsername; // Store the username in the session
+    $db = getDatabaseConnection();
 
-        // Redirect back to the previous page
-        $previousPage = $_SERVER['HTTP_REFERER'];
-        header("Location: index.php");
-        exit;
+    // Verifique se o usuário já existe
+    $stmt = $db->prepare('SELECT * FROM users WHERE username = :username');
+    $stmt->bindParam(':username', $username);
+    $stmt->execute();
+
+    $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($existingUser) {
+        // Exiba uma mensagem de erro se o usuário já existir
+        echo "Usuário já existe. Escolha outro nome de usuário.";
     } else {
-        // Authentication failed
-        echo 'Invalid username or password';
-        // You might want to redirect or display an error message
+        // Insira o novo usuário no banco de dados
+        $stmt = $db->prepare('INSERT INTO users (username, password, name) VALUES (:username, SHA1(:password), :name)');
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':name', $name);
+        $stmt->execute();
+
+        // Inicie a sessão e armazene o nome do usuário
+        session_start();
+        $_SESSION['username'] = $username;
+
+        // Redirecione para a página de login após o registro bem-sucedido
+        header("Location: index.php");
+        exit();
     }
-} else {
-    // If the form was not submitted via POST, redirect to an error page or another appropriate location
-    header('Location: index.php');
-    exit;
 }
+
+// Redirecione para a página de registro em caso de acesso direto
+header("Location: register.php");
+exit();
 ?>
