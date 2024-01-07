@@ -11,7 +11,7 @@
   <label>
     Password <input type="password" name="password">
   </label>
-  <input formaction="#" type="submit" value="Login">
+  <input formaction="" type="submit" value="Login">
 </form>
 
 <?php
