@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once('templates/common.php');
-require_once('templates/login.php');
-require_once('database/connection.php');
+require_once('./templates/common.php');
+require_once('./templates/login.php');
+require_once('./database/connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];

@@ -1,5 +1,5 @@
 <?php
-require_once('database/connection.php');
+require_once('./database/connection.php');
 
 function checkCredentials($username, $password) {
     $db = getDatabaseConnection();
