@@ -45,11 +45,6 @@ function output_header() {
 }
 
 function output_footer($tags) {
-    echo '<div class="footer">';
-    // Supondo que $tags seja um array com as tags do artigo
-    foreach ($tags as $tag) {
-        echo '<span class="tag">' . $tag . '</span>';
-    }
-    echo '</div>';
+    
 }
 ?>
