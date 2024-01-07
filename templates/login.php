@@ -18,7 +18,7 @@
   </head>
   <body>
     </nav>
-    <section id="login">
+    <section id="register">
       <h1>Login</h1>
       <form action="action_login.php" method="post">
         <label>
