@@ -1,8 +1,9 @@
 <?php
+
 session_start();
-require_once('templates/common.php');
-require_once('templates/login.php');
-require_once('database/connection.php');
+require_once('./templates/common.php');
+require_once('./templates/register.php');
+require_once('./database/connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
@@ -29,8 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':name', $name);
         $stmt->execute();
 
+        // Inicie a sessão e armazene o nome do usuário
+        session_start();
+        $_SESSION['username'] = $username;
+
         // Redirecione para a página de login após o registro bem-sucedido
-        header("Location: login.php");
+        header("Location: index.php");
         exit();
     }
 }

@@ -1,15 +1,13 @@
 <?php
-    require_once './database/connection.php';
-    require_once './templates/common.php';
-    require_once './news.php';
+require_once('database/connection.php');
+require_once('database/news.php');
+require_once('templates/common.php');
+require_once('templates/news.php');
 
-    $db = getDatabaseConnection();
-    session_start();
-    output_header();
-    $articles = getAllNews($db);
-    output_footer();
+$db = getDatabaseConnection();
+$articles = getAllNews($db);
 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+output_header();
+output_article_list($articles);
+output_footer();
 ?>
