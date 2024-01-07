@@ -30,7 +30,7 @@
         <label>
           Complete Name <input type="text" name="name">
         </label>
-        <input formaction="" type="submit" value="Register">
+        <input type="submit" value="Register">
       </form>
     </section>
     <?php
