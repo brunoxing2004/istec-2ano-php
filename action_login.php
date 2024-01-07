@@ -1,5 +1,6 @@
 <?php
 // action_login.php
+require_once './database/connection.php';
 session_start(); // Start the session
 
 // Check if the form was submitted
@@ -8,8 +9,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $submittedUsername = $_POST['username'];
     $submittedPassword = $_POST['password'];
 
-    // Validate the username and password (replace with your authentication logic)
-    if ($submittedUsername === 'username' && $submittedPassword === 'password') {
+    // Validate the username and password using the database connection
+    $db = getDatabaseConnection(); // Use the function from connection.php
+    $query = "SELECT * FROM users WHERE username = :username AND password = :password";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':username', $submittedUsername);
+    $stmt->bindParam(':password', $submittedPassword);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user) {
         // Authentication successful
         $_SESSION['username'] = $submittedUsername; // Store the username in the session
 
@@ -28,3 +37,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
+
