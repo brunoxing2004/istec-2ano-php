@@ -2,7 +2,7 @@
 
 session_start();
 require_once('./templates/common.php');
-require_once('./templates/register.php');
+require_once('./templates/register_process.php');
 require_once('./database/connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
