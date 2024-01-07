@@ -19,7 +19,7 @@
   <body>
     <header>
       <h1><a href="index.html">Super Legit News</a></h1>
-      <h2><a href="index.html">Where fake news are born!</a></h2>
+      <h2><a href="index.html">Where fake news!</a></h2>
       <div id="signup">
         <a href="register.php">Register</a>
         <a href="login.php">Login</a>
