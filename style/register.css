@@ -150,6 +150,58 @@ section {
     background-color: #046DD5;
 }
 
+
+#login {
+    text-align: center;
+    background-color: rgb(223, 223, 223);
+}
+
+#login h1 {
+    font-family: 'Poppins', sans-serif;
+}
+
+#login form {
+    background-color: white;
+    max-width: 300px;
+    padding: 30px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#login label {
+    display: block;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+#login input {
+    width: 95%;
+    padding: 5px;
+    margin-top: 5px;
+    border: 0;
+    border-bottom: 1px solid black;
+    transition: border-color 0.3s;
+    margin-bottom: 20px;
+}
+
+#login input:focus {
+    border-color: black;
+    outline: none;
+}
+
+#login button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#login button:hover {
+    background-color: #046DD5;
+}
+
+
 footer {
     position: fixed;
     bottom: 0;
