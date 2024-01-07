@@ -18,8 +18,8 @@
   </head>
   <body>
     </nav>
-    <section id="register">
-      <h1>Register</h1>
+    <section id="login">
+      <h1>Login</h1>
       <form action="action_login.php" method="post">
         <label>
           Username <input type="text" name="username">
