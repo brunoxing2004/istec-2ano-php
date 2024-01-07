@@ -30,6 +30,7 @@
         <input type="submit" value="Login">
       </form>
     </section>
+    
     <?php
     output_footer();
     ?>

@@ -1,16 +1,15 @@
 <?php
-// action_login.php
 require_once './database/connection.php';
-session_start(); // Start the session
+session_start();// sessão do user
 
-// Check if the form was submitted
+// verifica se foi recebido post, caso contrário, erro
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the submitted username and password
+    // lê o POST recebido
     $submittedUsername = $_POST['username'];
     $submittedPassword = $_POST['password'];
 
-    // Validate the username using the database connection
-    $db = getDatabaseConnection(); // Use the function from connection.php
+    // validar user na db
+    $db = getDatabaseConnection(); // connection.php
     $query = "SELECT * FROM users WHERE username = :username";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':username', $submittedUsername);
@@ -18,27 +17,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // Verify the password using password_verify
+        // password_verify para desencriptar
         if (password_verify($submittedPassword, $user['password'])) {
-            // Authentication successful
-            $_SESSION['username'] = $submittedUsername; // Store the username in the session
+            // sucesso na auth
+            $_SESSION['username'] = $submittedUsername; // coloca user no cookie de sessão
 
-            // Redirect back to the previous page
+            // debug e redirect
             //$previousPage = $_SERVER['HTTP_REFERER'];
             //header("Location: index.php");
             exit;
         } else {
-            // Authentication failed (password mismatch)
+            // falha hash diferente
             echo 'Invalid username or password';
-            // You might want to redirect or display an error message
+
+            //debug, não essencial
+            //ini_set('display_errors', 1);
+            //ini_set('display_startup_errors', 1);
+            //error_reporting(E_ALL);
         }
     } else {
-        // Authentication failed (username not found)
+        // user não existe
         echo 'Invalid username or password';
-        // You might want to redirect or display an error message
+        //debug de random redirect
+        //ini_set('display_errors', 1);
+        //ini_set('display_startup_errors', 1);
+        //error_reporting(E_ALL);
     }
 } else {
-    // If the form was not submitted via POST, redirect to an error page or another appropriate location
+    // sem post, vai para o index
     header('Location: index.php');
     exit;
 }

@@ -50,17 +50,16 @@
     function fullArticle(){
         session_start();
         if (!isset($_SESSION['username'])) {
-            // If not logged in, redirect to the main page
-            header('Location: index.php'); // Replace with your main page
+            header('Location: index.php'); 
             exit;
         } else {
-        // ARTICLE INFO
+        // info artigo, indeciso na função
         $stmt = getDatabaseConnection()->prepare('SELECT * FROM news JOIN users USING (username) WHERE id = :id');
         $stmt->bindParam(':id', $_GET['id']);
         $stmt->execute();
         $article = $stmt->fetch();
 
-        // ARTICLE
+        // artigo
         echo '<h2>' . $article['title'] . '</h2>';
         echo '<p>' . $article['fulltext'] . '</p>';
         echo '<a href="index.php">Main</a> | <a href="edit_article.php?id=' . $article['id'] . '">Edit article</a> ';

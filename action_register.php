@@ -1,20 +1,19 @@
 <?php
-// action_register.php
 require_once './database/connection.php';
-session_start(); // Start the session
+session_start(); // sessão do user
 
-// Check if the form was submitted
+// verifica se foi recebido post, caso contrário, erro
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the submitted username and password
+    // lê o POST recebido
     $submittedUsername = $_POST['username'];
     $submittedPassword = $_POST['password'];
     $submittedName = $_POST['name'];
 
-    // Hash the password using BCRYPT
+    // hash da password com bcrypt
     $hashedPassword = password_hash($submittedPassword, PASSWORD_BCRYPT);
 
-    // Insert the new user into the database
-    $db = getDatabaseConnection(); // Use the function from connection.php
+    // inserção de novo user na bd
+    $db = getDatabaseConnection(); // connection.php
     $query = "INSERT INTO users (username, password, name) VALUES (:username, :password, :name)";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':username', $submittedUsername);
@@ -22,15 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':name', $submittedName);
 
     if ($stmt->execute()) {
-        // Registration successful
+        // registo com sucesso
         echo 'User registered successfully';
     } else {
-        // Registration failed
+        // falha com echo
         echo 'Error registering user';
-        // You might want to redirect or display an error message
     }
 } else {
-    // If the form was not submitted via POST, redirect to an error page or another appropriate location
+    // sem post, vai para o index
     header('Location: index.php');
     exit;
 }

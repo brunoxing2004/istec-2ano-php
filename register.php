@@ -1,4 +1,5 @@
 <?php
+  //template está com erro
   require_once './templates/register.php';
   session_start();
   output_header();

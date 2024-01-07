@@ -5,10 +5,10 @@ require_once './news.php';
 
 session_start();
 
-// Check if a user is not logged in
+// verifica se existe sessão
 if (!isset($_SESSION['username'])) {
-    // If not logged in, redirect to the main page
-    header('Location: index.php'); // Replace with your main page
+    // sem login, redirect para o index
+    header('Location: index.php');
     exit;
 } else {
     $articleId = $_GET['id'];

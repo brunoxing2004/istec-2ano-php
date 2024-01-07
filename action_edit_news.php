@@ -2,13 +2,10 @@
 require_once './database/connection.php';
 require_once './news.php';
 
-// action_edit_article.php
-session_start(); // Start the session
+session_start(); // sessão cookies
 
-// Check if a user is not logged in
 if (!isset($_SESSION['username'])) {
-    // If not logged in, redirect to the main page
-    header('Location: index.php'); // Replace with your main page
+    header('Location: index.php');
     exit;
 } else {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,7 +20,7 @@ if (!isset($_SESSION['username'])) {
         header("Location: article.php?id=$articleId");
         exit;
     } else {
-        header("Location: error_page.php");
+        header("Location: index.php");
         exit;
     }
 }
