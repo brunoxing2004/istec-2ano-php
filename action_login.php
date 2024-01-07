@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     // If the form was not submitted via POST, redirect to an error page or another appropriate location
-    header('Location: error_page.php');
+    header('Location: index.php');
     exit;
 }
 ?>
