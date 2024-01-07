@@ -9,25 +9,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $submittedUsername = $_POST['username'];
     $submittedPassword = $_POST['password'];
 
-    // Validate the username and password using the database connection
+    // Validate the username using the database connection
     $db = getDatabaseConnection(); // Use the function from connection.php
-    $query = "SELECT * FROM users WHERE username = :username AND password = :password";
+    $query = "SELECT * FROM users WHERE username = :username";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':username', $submittedUsername);
-    $stmt->bindParam(':password', $submittedPassword);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // Authentication successful
-        $_SESSION['username'] = $submittedUsername; // Store the username in the session
+        // Verify the password using password_verify
+        if (password_verify($submittedPassword, $user['password'])) {
+            // Authentication successful
+            $_SESSION['username'] = $submittedUsername; // Store the username in the session
 
-        // Redirect back to the previous page
-        $previousPage = $_SERVER['HTTP_REFERER'];
-        header("Location: index.php");
-        exit;
+            // Redirect back to the previous page
+            $previousPage = $_SERVER['HTTP_REFERER'];
+            header("Location: index.php");
+            exit;
+        } else {
+            // Authentication failed (password mismatch)
+            echo 'Invalid username or password';
+            // You might want to redirect or display an error message
+        }
     } else {
-        // Authentication failed
+        // Authentication failed (username not found)
         echo 'Invalid username or password';
         // You might want to redirect or display an error message
     }
@@ -37,4 +43,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
-
