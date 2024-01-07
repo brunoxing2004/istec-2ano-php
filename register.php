@@ -20,14 +20,14 @@
     </nav>
     <section id="register">
       <h1>Register</h1>
-      <form action="action_login.php" method="post">
+      <form action="action_register.php" method="post">
         <label>
           Username <input type="text" name="username">
         </label>
         <label>
           Password <input type="password" name="password">
         </label>
-        <input formaction="" type="submit" value="Login">
+        <input formaction="" type="submit" value="Register">
       </form>
     </section>
     <?php
