@@ -1,5 +1,5 @@
 <?php
-  require_once './templates/common.php';
+  //require_once './templates/common.php';
   session_start();
   output_header();
 ?>
@@ -17,26 +17,6 @@
     <link href="./style/forms.css" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <h1><a href="index.html">Super Legit News</a></h1>
-      <h2><a href="index.html">Where fake news!</a></h2>
-      <div id="signup">
-        <a href="register.php">Register</a>
-        <a href="login.php">Login</a>
-      </div>
-    </header>
-      <!-- just for the hamburguer menu in responsive layout -->
-      <input type="checkbox" id="hamburger"> 
-      <label class="hamburger" for="hamburger"></label>
-      <nav id="menu">
-      <ul>
-        <li><a href="index.html">Local</a></li>
-        <li><a href="index.html">World</a></li>
-        <li><a href="index.html">Politics</a></li>
-        <li><a href="index.html">Sports</a></li>
-        <li><a href="index.html">Science</a></li>
-        <li><a href="index.html">Weather</a></li>
-      </ul>
     </nav>
     <section id="register">
       <h1>Register</h1>
