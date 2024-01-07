@@ -1,5 +1,5 @@
 <?php
-  require_once './templates/common.php';
+  require_once './templates/register.php';
   session_start();
   output_header();
 ?>
