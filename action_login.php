@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['username'] = $submittedUsername; // Store the username in the session
 
             // Redirect back to the previous page
-            $previousPage = $_SERVER['HTTP_REFERER'];
-            header("Location: index.php");
+            //$previousPage = $_SERVER['HTTP_REFERER'];
+            //header("Location: index.php");
             exit;
         } else {
             // Authentication failed (password mismatch)
