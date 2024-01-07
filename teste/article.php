@@ -1,9 +1,9 @@
 <?php
-require_once('database/connection.php');
-require_once('database/news.php');
-require_once('database/comments.php');
-require_once('templates/common.php');
-require_once('templates/news.php');
+require_once('./database/connection.php');
+require_once('./database/news.php');
+require_once('./database/comments.php');
+require_once('./templates/common.php');
+require_once('./templates/news.php');
 
 $db = getDatabaseConnection();
 $articleId = $_GET['id'];

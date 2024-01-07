@@ -1,5 +1,5 @@
 <?php
-require_once('database/connection.php');
+require_once('./database/connection.php');
 
 function validateRegistrationData($username, $password, $name) {
     // Adicione validações adicionais conforme necessário
