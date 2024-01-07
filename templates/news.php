@@ -18,7 +18,7 @@ function output_article($article) {
             </header>
             <p>' . $article['introduction'] . '</p>
             <footer>
-              <span class="author">' . $article['author'] . '</span>
+              <span class="author">' . $article['username'] . '</span>
               <span class="tags">' . output_tags($tags) . '</span>
               <span class="date">' . $date . '</span>
               <a class="comments" href="article.php?id=' . $article['id'] . '#comments">' . $article['comments'] . '</a>
