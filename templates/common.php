@@ -44,7 +44,7 @@ function output_header() {
         </nav>';
 }
 
-function output_footer($tags) {
+function output_footer() {
     
 }
 ?>
