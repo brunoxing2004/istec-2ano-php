@@ -1,46 +1,56 @@
-<?php
 
-session_start();
-require_once('./templates/common.php');
-require_once('./templates/register_process.php');
-require_once('./database/connection.php');
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $name = $_POST['name'];
-
-    $db = getDatabaseConnection();
-
-    // Verifique se o usuário já existe
-    $stmt = $db->prepare('SELECT * FROM users WHERE username = :username');
-    $stmt->bindParam(':username', $username);
-    $stmt->execute();
-
-    $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($existingUser) {
-        // Exiba uma mensagem de erro se o usuário já existir
-        echo "Usuário já existe. Escolha outro nome de usuário.";
-    } else {
-        // Insira o novo usuário no banco de dados
-        $stmt = $db->prepare('INSERT INTO users (username, password, name) VALUES (:username, SHA1(:password), :name)');
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':name', $name);
-        $stmt->execute();
-
-        // Inicie a sessão e armazene o nome do usuário
-        session_start();
-        $_SESSION['username'] = $username;
-
-        // Redirecione para a página de login após o registro bem-sucedido
-        header("Location: index.php");
-        exit();
-    }
-}
-
-// Redirecione para a página de registro em caso de acesso direto
-header("Location: register.php");
-exit();
-?>
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Super Legit News</title>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <link href="register.css" rel="stylesheet">
+    <link href="layout.css" rel="stylesheet">
+    <link href="responsive.css" rel="stylesheet">
+    <link href="comments.css" rel="stylesheet">
+    <link href="forms.css" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html">Super Legit News</a></h1>
+      <h2><a href="index.html">Where fake news are born!</a></h2>
+      <div id="signup">
+        <a href="register.php">Register</a>
+        <a href="login.php">Login</a>
+      </div>
+    </header>
+      <!-- just for the hamburguer menu in responsive layout -->
+      <input type="checkbox" id="hamburger"> 
+      <label class="hamburger" for="hamburger"></label>
+      <nav id="menu">
+      <ul>
+        <li><a href="index.html">Local</a></li>
+        <li><a href="index.html">World</a></li>
+        <li><a href="index.html">Politics</a></li>
+        <li><a href="index.html">Sports</a></li>
+        <li><a href="index.html">Science</a></li>
+        <li><a href="index.html">Weather</a></li>
+      </ul>
+    </nav>
+    <section id="register">
+      <h1>Register</h1>
+      <form>
+        <label>
+          Username <input type="text" name="username">
+        </label>
+        <label>
+          E-mail <input type="email" name="email">
+        </label>
+        <label>
+          Password <input type="password" name="password">
+        </label>
+        <button formaction="#" formmethod="post">Register</button>
+      </form>
+    </section>
+    <footer>
+      <p>&copy; Fake News, 2022</p>
+    </footer>
+  </body>
+</html>

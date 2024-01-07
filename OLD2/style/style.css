@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Imperial+Script&family=Lora&family=Roboto:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Imperial+Script&family=Lora&family=Poppins:wght@100&family=Roboto:ital,wght@1,300&display=swap');
+
+body {
+  font-family: Poppins;
+  background-color: white;
+}
+
+body header {
+    background-color: blue;
+}
+
+header a {
+  color:white;
+  text-decoration: none;
+}
+
+header a:hover {
+  background-color: #2A2F33;
+  color: white;
+}
+
+header h1 {
+  font-weight: bold;
+}
+
+#hamburger,
+.hamburger {
+  display: none;
+}
+
+#menu li {
+  list-style-type: none;
+  border-top: 5px solid #3498db;
+  background-color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+#menu a {
+  text-decoration: none;
+  background-color: white;
+}
+
+#menu a:hover {
+  background-color: #2A2F33;
+  color: white;
+}
+
+#menu li:nth-child(1) {
+  border-top: 5px solid #E1493E;
+}
+
+#menu li:nth-child(2) {
+  border-top: 5px solid #8ABA56;
+}
+
+#menu li:nth-child(3) {
+  border-top: 5px solid #5B4282;
+}
+
+#menu li:nth-child(4) {
+  border-top: 5px solid #FF8932;
+}
+
+#menu li:nth-child(5) {
+  border-top: 5px solid #19B6E9;
+}
+
+#menu li:nth-child(6) {
+  border-top: 5px solid #E84C8B;
+}
+
+#related {
+  background-color: #2A2F33;
+  color: white;
+}
+
+#related a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+#related a:hover {
+  background-color: #2A2F33;
+  color: white;
+}
+
+#related p {
+  text-decoration: none;
+  color: white;
+}
+
+#news footer {
+  background-color: #f4655f;
+  color: white;
+  font-weight: bold;
+}
+
+#news footer a {
+  text-decoration: none;
+  color: white;
+}
+
+#news h1 {
+  color: white;
+  font-weight: bold;
+}
+
+#news header {
+  background-color: transparent;
+}
+
+footer p {
+  background-color: #2A2F33;
+  color: white;
+  font-weight: bold;
+}

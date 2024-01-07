@@ -1,41 +1,19 @@
 <?php
-session_start();
-require_once('./templates/common.php');
-require_once('./templates/login.php');
-require_once('./database/connection.php');
+  require_once './templates/common.php';
+  session_start();
+  output_header();
+?>
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $name = $_POST['name'];
+<form action="action_login.php" method="post">
+  <label>
+    Username <input type="text" name="username">
+  </label>
+  <label>
+    Password <input type="password" name="password">
+  </label>
+  <input formaction="#" type="submit" value="Login">
+</form>
 
-    $db = getDatabaseConnection();
-
-    // Verifique se o usuário já existe
-    $stmt = $db->prepare('SELECT * FROM users WHERE username = :username');
-    $stmt->bindParam(':username', $username);
-    $stmt->execute();
-
-    $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($existingUser) {
-        // Exiba uma mensagem de erro se o usuário já existir
-        echo "Usuário já existe. Escolha outro nome de usuário.";
-    } else {
-        // Insira o novo usuário no banco de dados
-        $stmt = $db->prepare('INSERT INTO users (username, password, name) VALUES (:username, SHA1(:password), :name)');
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':name', $name);
-        $stmt->execute();
-
-        // Redirecione para a página de login após o registro bem-sucedido
-        header("Location: login.php");
-        exit();
-    }
-}
-
-// Redirecione para a página de registro em caso de acesso direto
-//header("Location: register.php");
-exit();
+<?php
+  output_footer();
 ?>
