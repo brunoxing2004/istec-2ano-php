@@ -1,6 +1,7 @@
 <?php
 // action_register.php
 require_once './database/connection.php';
+session_start(); // Start the session
 
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,9 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->execute()) {
         // Registration successful
         echo 'User registered successfully';
-        // You might want to redirect or display a success message
-        sleep(2);
-        header("Location: index.php");
     } else {
         // Registration failed
         echo 'Error registering user';
