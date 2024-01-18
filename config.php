@@ -1,6 +1,6 @@
 <?php
 function getDatabaseConnection() {
-    $db_path = '/home/carmezim/projeto/helpdesk.db'; // Verifique o caminho correto
+    $db_path = './helpdesk.db'; // Verifique o caminho correto
 
     try {
         $db = new PDO("sqlite:$db_path");
