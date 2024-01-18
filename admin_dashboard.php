@@ -44,49 +44,16 @@ session_start();
                     $ticketId = $_POST['ticket_id'];
 
                     if ($action === 'responder') {
-
-                        $response = $_POST['response'];
-
+                        // ... Código para responder a um ticket ...
+                    } elseif ($action === 'Alterar Status') {
+                        // ... Código para alterar o status de um ticket ...
+                    } elseif ($action === 'apagar') {
+                        // Excluir o ticket do banco de dados
                         $db->beginTransaction();
-                        $updateQuery = $db->prepare("UPDATE tickets SET response = :response, status = 'Respondido' WHERE id = :ticket_id");
-                        $updateQuery->bindParam(':response', $response);
-                        $updateQuery->bindParam(':ticket_id', $ticketId);
-                        $updateQuery->execute();
+                        $deleteQuery = $db->prepare("DELETE FROM tickets WHERE id = :ticket_id");
+                        $deleteQuery->bindParam(':ticket_id', $ticketId);
+                        $deleteQuery->execute();
                         $db->commit();
-                    } 
-                    
-                    elseif ($action === 'alterar_status') {
-                        $newStatus = $_POST['new_status'];
-                    
-                        try {
-                            $db->beginTransaction();
-                    
-                            // Verificar se o status atual é diferente de 'Respondido'
-                            $checkStatusQuery = $db->prepare("SELECT status FROM tickets WHERE id = :ticket_id");
-                            $checkStatusQuery->bindParam(':ticket_id', $ticketId);
-                            $checkStatusQuery->execute();
-                            $currentStatus = $checkStatusQuery->fetchColumn();
-                    
-                            if ($currentStatus !== 'Respondido') {
-                                // Se o status atual não for 'Respondido', realizar a atualização
-                                $updateStatusQuery = $db->prepare("UPDATE tickets SET status = :new_status WHERE id = :ticket_id");
-                                $updateStatusQuery->bindParam(':new_status', $newStatus);
-                                $updateStatusQuery->bindParam(':ticket_id', $ticketId);
-                    
-                                if ($updateStatusQuery->execute()) {
-                                    $db->commit();
-                                    echo "Status alterado com sucesso.";
-                                } else {
-                                    $db->rollBack();
-                                    echo "Erro ao alterar o status.";
-                                }
-                            } else {
-                                echo "Não é possível alterar o status de um ticket respondido.";
-                            }
-                        } catch (PDOException $e) {
-                            $db->rollBack();
-                            echo "Erro: " . $e->getMessage();
-                        }
                     }
                 }
             }
@@ -113,14 +80,15 @@ session_start();
                     echo "        <button class='action-button respond-button' type='button' onclick='openModal(\"{$ticket['id']}\")'>Responder</button>";
                     echo "        <form class='delete-form' method='post' action='admin_dashboard.php'>";
                     echo "            <input type='hidden' name='ticket_id' value='{$ticket['id']}'>";
-                    echo "            <button class='action-button delete-button' type='submit' name='action' value='apagar'>Apagar</button>";
+                    echo "            <input type='hidden' name='action' value='apagar'>"; // Adicionado campo oculto para ação de apagar
+                    echo "            <button class='action-button delete-button' type='submit'>Apagar</button>";
+                    echo "        </form>";
                     echo "            Novo Status: <select name='new_status'>";
                     echo "                <option value='Aberto'>Aberto</option>";
                     echo "                <option value='Pendente'>Pendente</option>";
                     echo "                <option value='Fechado'>Fechado</option>";
                     echo "            </select><br>";
                     echo "            <input type='submit' name='action' value='Alterar Status'>";
-                    echo "        </form>";
                     echo "    </td>";
                     echo "</tr>";
                 }
@@ -138,6 +106,8 @@ session_start();
                 echo "        <form class='response-form' method='post' action='admin_dashboard.php'>";
                 echo "            <input type='hidden' name='ticket_id' id='modalTicketId'>";
                 echo "            Resposta: <textarea name='response'></textarea><br>";
+
+                echo "            </select><br>";
                 echo "            <input type='submit' name='action' value='responder'>";
                 echo "        </form>";
                 echo "    </div>";
