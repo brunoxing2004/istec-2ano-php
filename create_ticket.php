@@ -2,7 +2,7 @@
 include 'config.php';
 
 session_start();
-$db = new SQLite3('helpdesk.db');
+$db = new SQLite3('./helpdesk.db');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Seu código para criar tickets aqui...
