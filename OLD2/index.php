@@ -15,7 +15,7 @@
     <h1>TechHelp</h1>
     <p>Your help for Tech!</p>
     <p>If you already have an account, <a href="login.php">login here</a>.</p>
-    <p>If not contact your chief Dept.</p>
+    <p>If not contact your chief Dept.<a href="register.php">login here</a></p>
 </div>
 
 </body>

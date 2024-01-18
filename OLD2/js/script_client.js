@@ -15,22 +15,5 @@ $(document).ready(function () {
 
         // Exiba a caixa de detalhes
         $('.details-section').show();
-
-        
     });
 });
-
-function openModal(ticketId) {
-    document.getElementById('modalTicketId').value = ticketId;
-    document.getElementById('myModal').style.display = 'block';
-}
-
-function closeModal() {
-    document.getElementById('myModal').style.display = 'none';
-}
-
-window.onclick = function (event) {
-    if (event.target == document.getElementById('myModal')) {
-        closeModal();
-    }
-};
